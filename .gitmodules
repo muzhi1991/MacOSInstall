@@ -1,0 +1,3 @@
+[submodule "VimConfig"]
+	path = VimConfig
+	url = https://github.com/muzhi1991/VimConfig.git
