@@ -1,5 +1,11 @@
 mac 系统安装时可以使用这个脚本安装软件
-使用deploy.sh开始运行
+1. 使用deploy.sh开始运行
+sh ./deploy.sh
+
+```
+git submodule init 
+git submodule update
+```
 
 必装软件
 

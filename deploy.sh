@@ -1,4 +1,7 @@
 #!/bin/sh
+git submodule init 
+git submodule update
+
 basepath=$(cd `dirname $0`; pwd)
 
 DEFAULT_RC_NAME=.zshrc
