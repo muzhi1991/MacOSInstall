@@ -1,4 +1,40 @@
 JAVA_VERSION=1.8
+# Java Maven Gradle
 export JAVA_HOME=`/usr/libexec/java_home -v $JAVA_VERSION`
+#export ANT_HOME=/usr/local/opt/ant
+export MAVEN_HOME=/usr/local/opt/maven
+export GRADLE_HOME=/usr/local/opt/gradle
+
+# Android 
+export ANDROID_HOME=/usr/local/share/android-sdk
+#export ANDROID_NDK_HOME=/usr/local/share/android-ndk
+
+# node 依据brew install nvm 的提示
+export NVM_DIR="$HOME/.nvm"
+source $(brew --prefix nvm)/nvm.sh
 
 
+# PATH配置，额外的配置，确保版本正确
+export PATH=$JAVA_HOME/bin:$PATH
+export PATH=$ANT_HOME/bin:$PATH
+export PATH=$MAVEN_HOME/bin:$PATH
+export PATH=$GRADLE_HOME/bin:$PATH
+export PATH=$ANDROID_HOME/tools:$PATH
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+#export PATH=$ANDROID_HOME/build-tools/19.1.0:$PATH
+# go
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
+
+# Anaconda
+export PATH=$HOME/anaconda/bin:$PATH
+
+# miniconda
+#PATH=~/miniconda3/bin:"$PATH"`
+
+alias proxy_socks="export http_proxy=socks://127.0.0.1:1086 export https_proxy=socks://127.0.0.1:1086"
+alias proxy="export http_proxy=http://127.0.0.1:1087 export https_proxy=https://127.0.0.1:1087"
+alias noproxy="unset http_proxy unset https_proxy"
+alias ip="curl -i http://ip.cn"
