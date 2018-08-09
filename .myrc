@@ -15,7 +15,7 @@ source $(brew --prefix nvm)/nvm.sh
 
 
 # PATH配置，额外的配置，确保版本正确
-export PATH=$JAVA_HOME/bin:$PATH
+#export PATH=$JAVA_HOME/bin:$PATH # mac中使用默认的/usr/bin/java 方便下面setjdk
 export PATH=$ANT_HOME/bin:$PATH
 export PATH=$MAVEN_HOME/bin:$PATH
 export PATH=$GRADLE_HOME/bin:$PATH
@@ -38,3 +38,29 @@ alias proxy_socks="export http_proxy=socks://127.0.0.1:1086 export https_proxy=s
 alias proxy="export http_proxy=http://127.0.0.1:1087 export https_proxy=https://127.0.0.1:1087"
 alias noproxy="unset http_proxy unset https_proxy"
 alias ip="curl -i http://ip.cn"
+alias dus="du -hs"
+
+# daemon
+# start mongod, please view log and pb path in config file
+alias start-mongod="mongod --config /usr/local/etc/mongod.conf &" 
+alias start-redis-server="redis-server /usr/local/etc/redis.conf --logfile \"redis.log\" --loglevel debug &" 
+
+function setjdk() {
+    export JAVA_HOME=`/usr/libexec/java_home -v $@`
+}
+
+function removeFromPath() {
+    export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")
+}
+function setscala() {
+    if [ -n "${SCALA_HOME+x}" ]; then
+        removeFromPath $SCALA_HOME
+        unset SCALA_HOME
+    fi
+    if [ $# -ne 0 ]; then
+        export SCALA_HOME="/usr/local/Cellar/scala/$@"
+        export PATH=$SCALA_HOME/bin:$PATH
+    fi
+}
+alias set_old_scala='setjdk 1.7 && setscala 2.9.2'
+alias reset_scala='setjdk 1.8 && setscala'
